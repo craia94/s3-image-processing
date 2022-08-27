@@ -65,7 +65,7 @@ def delete_object_from_s3(bucket, file):
 
 def remove_metadata(file_path):
     """
-    Removes any meta data from a given 
+    Removes any meta data from a given image
         file_path : path to the file to remove meta data from
     """
     img = Image.open(file_path)
