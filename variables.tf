@@ -31,6 +31,12 @@ variable "post_process_bucket_name" {
   type = string
 }
 
+variable "s3_notification_file_suffix" {
+  default = ".jpg"
+  description = "Suffix of files that should trigger the S3 notification"
+  type = string
+}
+
 locals {
   pre_process_bucket_name = "${data.aws_caller_identity.current.account_id}-${var.pre_process_bucket_name}"
   post_process_bucket_name = "${data.aws_caller_identity.current.account_id}-${var.post_process_bucket_name}"
