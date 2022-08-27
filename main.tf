@@ -26,6 +26,12 @@ resource "aws_lambda_function" "image_processor_lambda" {
 # Pre processed bucket
 resource "aws_s3_bucket" "pre_process_bucket" {
   bucket = local.pre_process_bucket_name
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_acl" "pre_process_bucket" {
+  bucket = aws_s3_bucket.pre_process_bucket.id
+  acl    = "private"
 }
 
 # Allow S3 to invoke lambda
@@ -53,4 +59,10 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
 # Post processed bucket
 resource "aws_s3_bucket" "post_process_bucket" {
   bucket = local.post_process_bucket_name
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_acl" "post_process_bucket" {
+  bucket = aws_s3_bucket.post_process_bucket.id
+  acl    = "private"
 }
