@@ -1,11 +1,3 @@
-# Module for image processor lambda
-# module "image_processor" {
-#   source               = "./modules/image_processor"
-#   lambda_function_name = var.service_now_mi_lambda_function_name
-#   lambda_runtime       = var.service_now_mi_lambda_runtime
-#   lambda_layer_arns    = concat(var.service_now_mi_lambda_layer_arns, [var.python_requests_lambda_layer_arn])
-# }
-
 data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
@@ -23,7 +15,7 @@ resource "aws_lambda_function" "image_processor_lambda" {
   role          = aws_iam_role.image_processor_lambda.arn
   handler       = "${var.lambda_function_name}.lambda_handler"
   runtime       = var.lambda_runtime
-  layers        = concat(var.lambda_layer_arns, [])
+  layers        = var.lambda_layer_arns
   environment {
     variables = {
       POST_PROCESSING_BUCKET_NAME = aws_s3_bucket.post_process_bucket.id
