@@ -30,3 +30,4 @@ override.tf.json
 *.zip
 *.code-workspace
 .terraform.lock.hcl
+*.gpg
